@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.tireservice.entity;
 
+import cz.muni.fi.pa165.tireservice.enums.CarType;
 import cz.muni.fi.pa165.tireservice.enums.OrderState;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,76 +25,102 @@ import javax.validation.constraints.NotNull;
  * @author Jan Tymel
  */
 @Entity
-@Table(name="ORDER")
+@Table(name = "ORDER")
 public class Order {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
 
-	@ManyToOne(optional=false)
-	@NotNull
-	private User user;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@OneToMany
-	@NotNull
-	private final List<OrderItem> orderItems = new ArrayList<OrderItem>();
+    @ManyToOne(optional = false)
+    @NotNull
+    private Customer customer;
 
-	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date created;
+    @OneToMany
+    @NotNull
+    private final List<Tire> tires = new ArrayList<Tire>();
 
-	@Enumerated
-	@NotNull
-	private OrderState state;
+    @OneToMany
+    @NotNull
+    private final List<Service> services = new ArrayList<Service>();
 
-	public Order(Long id) {
-		this.id=id;
-	}
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
 
-	public Order() {
-	}
+    @Enumerated
+    @NotNull
+    private OrderState state;
 
-	public User getUser() {
-		return user;
-	}
+    @Enumerated
+    @NotNull
+    private CarType carType;
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public Order(Long id) {
+        this.id = id;
+    }
 
-	public List<OrderItem> getOrderItems() {
-		return Collections.unmodifiableList(orderItems);
-	}
+    public Order() {
+    }
 
-	public void addOrderItem(OrderItem p) {
-		orderItems.add(p);
-	}
+    public Customer getCustomer() {
+        return customer;
+    }
 
-	public Date getCreated() {
-		return created;
-	}
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
-	public void setCreated(Date created) {
-		this.created = created;
-	}
+    public List<Tire> getTires() {
+        return Collections.unmodifiableList(tires);
+    }
 
-	public OrderState getState() {
-		return state;
-	}
+    public void addTire(Tire tire) {
+        tires.add(tire);
+    }
 
-	public void setState(OrderState state) {
-		this.state = state;
-	}
+    public List<Tire> getServices() {
+        return Collections.unmodifiableList(services);
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public void addService(Service service) {
+        services.add(service);
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public OrderState getState() {
+        return state;
+    }
+
+    public void setState(OrderState state) {
+        this.state = state;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public CarType getCarType() {
+        return carType;
+    }
+
+    public void setCarType(CarType carType) {
+        this.carType = carType;
+    }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.getUser());
-        hash = 29 * hash + Objects.hashCode(this.getOrderItems());
+        hash = 29 * hash + Objects.hashCode(this.getCustomer());
+        hash = 29 * hash + Objects.hashCode(this.getTires());
+        hash = 29 * hash + Objects.hashCode(this.getServices());
         hash = 29 * hash + Objects.hashCode(this.getCreated());
         hash = 29 * hash + Objects.hashCode(this.getState());
         return hash;
@@ -108,10 +135,13 @@ public class Order {
             return false;
         }
         final Order other = (Order) obj;
-        if (!Objects.equals(this.user, other.getUser())) {
+        if (!Objects.equals(this.customer, other.getCustomer())) {
             return false;
         }
-        if (!Objects.equals(this.orderItems, other.getOrderItems())) {
+        if (!Objects.equals(this.tires, other.getTires())) {
+            return false;
+        }
+        if (!Objects.equals(this.services, other.getServices())) {
             return false;
         }
         if (!Objects.equals(this.created, other.getCreated())) {
@@ -122,6 +152,5 @@ public class Order {
         }
         return true;
     }
-
 
 }
