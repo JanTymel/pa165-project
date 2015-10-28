@@ -34,7 +34,7 @@ public class Order {
 
     @ManyToOne(optional = false)
     @NotNull
-    private Customer customer;
+    private User customer;
 
     @OneToMany
     @NotNull
@@ -63,11 +63,11 @@ public class Order {
     public Order() {
     }
 
-    public Customer getCustomer() {
+    public User getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(User customer) {
         this.customer = customer;
     }
 
@@ -79,7 +79,7 @@ public class Order {
         tires.add(tire);
     }
 
-    public List<Tire> getServices() {
+    public List<Service> getServices() {
         return Collections.unmodifiableList(services);
     }
 
