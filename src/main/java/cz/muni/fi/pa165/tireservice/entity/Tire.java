@@ -8,6 +8,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -16,7 +18,6 @@ import javax.validation.constraints.NotNull;
  * @author Jan Tymel
  */
 @Entity
-@Table(name = "TIRE")
 public class Tire {
 
     @Id
@@ -37,6 +38,8 @@ public class Tire {
     private int width;
 
     @NotNull
+    @OneToOne
+    @JoinTable(name="CURRENT_VENDOR")
     private TireVendor tireVendor;
 
     @NotNull

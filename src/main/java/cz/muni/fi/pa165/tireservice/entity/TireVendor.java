@@ -12,7 +12,6 @@ import javax.validation.constraints.NotNull;
  * @author Jan Tymel
  */
 @Entity
-@Table(name = "TIRE_VENDOR")
 public class TireVendor {
 
     @Id

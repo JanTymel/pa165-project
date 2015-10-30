@@ -11,7 +11,7 @@ import java.math.BigDecimal;
  * @author Samuel Baniar
  */
 public interface OrderDao {
-
+    
     /**
      * Adds new Tire to order
      * @param tire
