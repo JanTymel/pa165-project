@@ -19,34 +19,34 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name="Users")
 public class User {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-        
+
     @NotNull
     private String name;
 
     @NotNull
     private String address;
-    
+
     @NotNull
     private String phone;
-    
+
     @NotNull
     private Boolean isAdmin;
-     
-    public User(){        
+
+    public User(){
     }
-    
+
     public User(Long id){
         this.id = id;
     }
-    
+
     public Long getId() {
         return id;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -69,8 +69,8 @@ public class User {
 
     public void setPhone(String Phone) {
         this.phone = Phone;
-    }    
-    
+    }
+
     public Boolean getIsAdmin() {
         return isAdmin;
     }
@@ -78,7 +78,7 @@ public class User {
     public void setIsAdmin(Boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
-    
+
     @Override
     public int hashCode(){
         int hash = 7;
@@ -86,34 +86,40 @@ public class User {
         hash = 13 * hash + Objects.hash(this.address);
         hash = 13 * hash + Objects.hash(this.phone);
         hash = 13 * hash + Objects.hash(this.isAdmin);
-        
+
         return hash;
     }
-    
+
     @Override
     public boolean equals(Object obj){
         if (obj == null) {
             return false;
         }
-        
+
         if (!(obj instanceof User)){
             return false;
         }
-        
+
         final User other = (User)obj;
-        
+
         if (!Objects.equals(this.name, other.getName())) {
             return false;
         }
-        
+
         if (!Objects.equals(this.address, other.getAddress())){
             return false;
         }
-        
+
         if (!Objects.equals(this.phone, other.getPhone())){
             return false;
         }
-        
-        return (other.getIsAdmin() && this.isAdmin);
+
+        return (other.getIsAdmin() == this.isAdmin);
     }
+
+    @Override
+    public String toString() {
+        return "User: id=" + id + ", name=" + name + ", address=" + address + ", phone=" + phone + ", isAdmin=" + isAdmin;
+    }
+
 }

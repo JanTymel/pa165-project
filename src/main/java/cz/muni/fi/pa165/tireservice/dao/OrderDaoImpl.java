@@ -15,17 +15,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Samuel Baniar
  */
 @Repository
+@Transactional
 public class OrderDaoImpl implements OrderDao {
-    
+
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     public void create(Order o) {
         em.persist(o);
@@ -38,20 +40,20 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public List<Order> findAll() {
-        return em.createQuery("Select o From Order o",Order.class).getResultList();
+        return em.createQuery("Select o From SERVICE_ORDER o",Order.class).getResultList();
     }
 
     @Override
     public void remove(Order o) throws IllegalArgumentException {
         em.remove(findById(o.getId()));
-    }    
+    }
 
     @Override
     public List<Order> findByUser(User u) {
         TypedQuery<Order> query = em.createQuery(
-				"Select o from Order o where o.user = :userid",
+				"Select o from SERVICE_ORDER o where o.user = :userid",
 				Order.class);
-		
+
 		query.setParameter("userid", u);
 		return query.getResultList();
     }
@@ -59,7 +61,7 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public List<Order> findByState(OrderState state) {
         TypedQuery<Order> query = em.createQuery(
-				"SELECT o FROM Order o WHERE o.state = :state", Order.class);
+				"SELECT o FROM SERVICE_ORDER o WHERE o.state = :state", Order.class);
 		query.setParameter("state", state);
 		return query.getResultList();
     }
@@ -67,7 +69,7 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public List<Order> findByCarType(CarType ct) {
         TypedQuery<Order> query = em.createQuery(
-				"SELECT o FROM Order o WHERE o.carType = :state", Order.class);
+				"SELECT o FROM SERVICE_ORDER o WHERE o.carType = :state", Order.class);
 		query.setParameter("state", ct);
 		return query.getResultList();
     }
@@ -76,7 +78,7 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> getOrdersCreatedBetween(Date start, Date end) {
         TypedQuery<Order> query = em
 				.createQuery(
-						"SELECT o FROM Order o WHERE o.created BETWEEN :startDate AND :endDate ",
+						"SELECT o FROM SERVICE_ORDER o WHERE o.created BETWEEN :startDate AND :endDate ",
 						Order.class);
 		query.setParameter("startDate", start);
 		query.setParameter("endDate", end);

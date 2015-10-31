@@ -163,4 +163,11 @@ public class Tire {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Tire: id=" + id + ", name=" + name + ", carType=" + carType + ", diameter=" + diameter + ", width=" + width + ", tireVendor=" + tireVendor + ", speedIndex=" + speedIndex + ", price=" + price;
+    }
+
+
 }

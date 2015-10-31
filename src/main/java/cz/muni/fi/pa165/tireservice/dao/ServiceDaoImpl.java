@@ -6,17 +6,19 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Samuel Baniar
  */
 @Repository
+@Transactional
 public class ServiceDaoImpl implements ServiceDao {
 
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     public void create(Service s) {
         em.persist(s);
@@ -46,9 +48,9 @@ public class ServiceDaoImpl implements ServiceDao {
     @Override
     public List<Service> getServicesWithPriceBetween(BigDecimal leftLimit, BigDecimal rightLimit) {
         if (rightLimit.compareTo(leftLimit) == -1){
-            throw new IllegalArgumentException();            
+            throw new IllegalArgumentException();
         }
         return em.createQuery("Select s From Service s Where price BETWEEN :left AND :right",Service.class).setParameter("left", leftLimit).setParameter("right", rightLimit).getResultList();
     }
-    
+
 }

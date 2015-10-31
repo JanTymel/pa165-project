@@ -5,12 +5,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Samuel Baniar
  */
 @Repository
+@Transactional
 public class UserDaoImpl implements UserDao {
     @PersistenceContext
     private EntityManager em;
@@ -34,5 +36,10 @@ public class UserDaoImpl implements UserDao {
     public List<User> findAll() {
         return em.createQuery("Select u from User u",User.class).getResultList();
     }
-    
+
+    @Override
+    public void remove(User user) {
+        em.remove(user);
+    }
+
 }

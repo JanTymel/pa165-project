@@ -14,6 +14,7 @@ public interface UserDao {
     public User findById(Long id);
     public List<User> findUsersByName(String name);
     public List<User> findAll();
+    public void remove(User user);
 
     /**
      * Sends new order to tire service.

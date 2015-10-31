@@ -10,6 +10,7 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,7 +26,7 @@ import javax.validation.constraints.NotNull;
  * @author Jan Tymel
  */
 @Entity
-@Table(name = "ORDER")
+@Table(name = "SERVICE_ORDER")
 public class Order {
 
     @Id
@@ -36,12 +37,11 @@ public class Order {
     @NotNull
     private User customer;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @NotNull
     private final List<Tire> tires = new ArrayList<Tire>();
 
-    @OneToMany
-    @NotNull
+    @OneToMany(fetch = FetchType.EAGER)
     private final List<Service> services = new ArrayList<Service>();
 
     @NotNull
@@ -152,5 +152,11 @@ public class Order {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Order: id=" + id + ", customer=" + customer + ", tires=" + tires + ", services=" + services + ", created=" + created + ", state=" + state + ", carType=" + carType;
+    }
+
 
 }
