@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.tireservice.entity;
 
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class TireVendor {
     private Long id;
 
     @NotNull
+    @Column(unique=true)
     private String name;
 
     public TireVendor(Long id) {

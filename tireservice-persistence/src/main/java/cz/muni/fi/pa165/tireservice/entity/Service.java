@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.tireservice.entity;
 
 import java.math.BigDecimal;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,7 @@ public class Service {
     private Long id;
 
     @NotNull
+    @Column(unique=true)
     private String name;
 
     @NotNull
