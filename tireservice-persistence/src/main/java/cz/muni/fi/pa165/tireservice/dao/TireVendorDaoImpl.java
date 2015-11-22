@@ -17,7 +17,7 @@ public class TireVendorDaoImpl implements TireVendorDao {
 
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     public void create(TireVendor tv) {
         em.persist(tv);
@@ -39,9 +39,14 @@ public class TireVendorDaoImpl implements TireVendorDao {
     }
 
     @Override
-    public List<TireVendor> findByName(String namePattern) {
+    public TireVendor findByName(String namePattern) {
         return em.createQuery("SELECT t FROM TireVendor t WHERE t.name like :name",
-                TireVendor.class).setParameter("name", "%" + namePattern + "%").getResultList();
+                TireVendor.class).setParameter("name", "%" + namePattern + "%").getSingleResult();
     }
-    
+
+    @Override
+    public TireVendor update(TireVendor tireVendor) {
+        return em.merge(tireVendor);
+    }
+
 }

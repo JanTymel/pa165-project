@@ -42,7 +42,7 @@ public class TireDaoTestCase extends AbstractTestNGSpringContextTests {
         em.getTransaction().begin();
 
         TireVendor vendor = new TireVendor();
-        vendor.setName("Barum");
+        vendor.setName("Barum-TEMPORARY-RENAMED");
         tireVendorDao.create(vendor);
 
         Tire tire = createTire("Polaris", 13, 130, new BigDecimal("880.00"), "70T", vendor, CarType.PASSENGER);
@@ -60,7 +60,7 @@ public class TireDaoTestCase extends AbstractTestNGSpringContextTests {
         em.getTransaction().begin();
 
         TireVendor vendor = new TireVendor();
-        vendor.setName("Barum");
+        vendor.setName("Barum-ANOTHER-TEMPORARY-NAME");
         tireVendorDao.create(vendor);
 
         Tire tire = createTire("Bravuris", 13, 130, new BigDecimal("880.00"), "70T", vendor, CarType.PASSENGER);

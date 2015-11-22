@@ -17,5 +17,6 @@ public interface TireVendorDao {
     public TireVendor findById(Long id);
     public List<TireVendor> findAll();
     public void remove(TireVendor tv) throws IllegalArgumentException;
-    public List<TireVendor> findByName(String namePattern);
+    public TireVendor findByName(String namePattern);
+    public TireVendor update(TireVendor tireVendor);
 }
