@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public class UserDaoImpl implements UserDao {
+
     @PersistenceContext
     private EntityManager em;
 
@@ -29,17 +30,43 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> findUsersByName(String name) {
-        return em.createQuery("Select u from User u Where name like :name",User.class).setParameter("name", "%" + name + "%").getResultList();
+        return em.createQuery("Select u from User u Where name like :name", User.class).setParameter("name", "%" + name + "%").getResultList();
     }
 
     @Override
     public List<User> findAll() {
-        return em.createQuery("Select u from User u",User.class).getResultList();
+        return em.createQuery("Select u from User u", User.class).getResultList();
     }
 
     @Override
     public void remove(User user) {
         em.remove(user);
+    }
+
+    @Override
+    public User update(User user) {
+        return em.merge(user);
+    }
+
+    @Override
+    public List<User> findByAddress(String address) {
+        return em.createQuery("Select u from User u Where address like :address", User.class).setParameter("address", "%" + address + "%").getResultList();
+    }
+
+    @Override
+    public User findByPhone(String phone) {
+        return em.createQuery("SELECT u FROM User u WHERE u.phone like :phone",
+                User.class).setParameter("phone", "%" + phone + "%").getSingleResult();
+    }
+
+    @Override
+    public List<User> findAllAdmins() {
+        return em.createQuery("Select u from User u Where isAdmin = 1", User.class).getResultList(); // needs to be checked
+    }
+
+    @Override
+    public List<User> findAllCustomers() {
+        return em.createQuery("Select u from User u Where isAdmin = 0", User.class).getResultList(); // needs to be checked
     }
 
 }

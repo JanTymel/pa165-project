@@ -1,25 +1,14 @@
-package cz.muni.fi.pa165.tireservice.entity;
+package cz.muni.fi.pa165.tireservice.dto;
 
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
+ * CreateDto for entity User.
  *
- * @author Samuel Baniar
+ * @author Jan Tymel
  */
-@Entity
-@Table(name = "Users")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class UserCreateDto {
 
     @NotNull
     private String name;
@@ -28,22 +17,10 @@ public class User {
     private String address;
 
     @NotNull
-    @Column(unique = true)
     private String phone;
 
     @NotNull
     private Boolean isAdmin;
-
-    public User() {
-    }
-
-    public User(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -65,8 +42,8 @@ public class User {
         return phone;
     }
 
-    public void setPhone(String Phone) {
-        this.phone = Phone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Boolean getIsAdmin() {
@@ -94,11 +71,11 @@ public class User {
             return false;
         }
 
-        if (!(obj instanceof User)) {
+        if (!(obj instanceof UserCreateDto)) {
             return false;
         }
 
-        final User other = (User) obj;
+        final UserCreateDto other = (UserCreateDto) obj;
 
         if (!Objects.equals(this.name, other.getName())) {
             return false;
@@ -117,7 +94,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User: id=" + id + ", name=" + name + ", address=" + address + ", phone=" + phone + ", isAdmin=" + isAdmin;
+        return "UserCreateDto: name=" + name + ", address=" + address + ", phone=" + phone + ", isAdmin=" + isAdmin;
     }
-
 }

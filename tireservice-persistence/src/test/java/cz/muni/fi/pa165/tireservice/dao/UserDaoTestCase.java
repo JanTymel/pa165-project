@@ -50,7 +50,7 @@ public class UserDaoTestCase extends AbstractTestNGSpringContextTests {
         em.getTransaction().begin();
 
         User admin = createUser("admin", "123 Fake st", "777666555", true);
-        User user = createUser("user", "Botanická 68a", "600601602", false);
+        User user = createUser("user", "Botanická 68a", "603601602", false);
 
         userDao.create(user);
 
@@ -72,7 +72,7 @@ public class UserDaoTestCase extends AbstractTestNGSpringContextTests {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
-        User user = createUser("user", "Náměstí svobody 25", "600601602", false);
+        User user = createUser("user", "Náměstí svobody 25", "600603604", false);
         userDao.create(user);
 
         List<User> foundUsers = userDao.findUsersByName("user");
