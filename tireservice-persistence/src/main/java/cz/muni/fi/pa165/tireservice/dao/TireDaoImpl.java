@@ -20,7 +20,7 @@ public class TireDaoImpl implements TireDao {
 
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     public void create(Tire t) {
         em.persist(t);
@@ -80,9 +80,9 @@ public class TireDaoImpl implements TireDao {
     @Override
     public List<Tire> getTiresWithPriceBetween(BigDecimal leftLimit, BigDecimal rightLimit) {
         if (rightLimit.compareTo(leftLimit) == -1){
-            throw new IllegalArgumentException();            
+            throw new IllegalArgumentException();
         }
         return em.createQuery("Select t From Tire t Where price BETWEEN :left AND :right",Tire.class).setParameter("left", leftLimit).setParameter("right", rightLimit).getResultList();
     }
-    
+
 }
