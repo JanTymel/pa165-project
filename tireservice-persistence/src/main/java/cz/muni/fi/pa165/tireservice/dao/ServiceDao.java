@@ -13,6 +13,7 @@ public interface ServiceDao {
     public Service findById(Long id);
     public List<Service> findAll();
     public void remove(Service t) throws IllegalArgumentException;
-    public List<Service> findByName(String namePattern);
+    public Service findByName(String namePattern);
     public List<Service> getServicesWithPriceBetween(BigDecimal leftLimit, BigDecimal rightLimit);
+    public Service update(Service service);
 }

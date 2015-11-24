@@ -40,9 +40,9 @@ public class ServiceDaoImpl implements ServiceDao {
     }
 
     @Override
-    public List<Service> findByName(String namePattern) {
+    public Service findByName(String namePattern) {
         return em.createQuery("SELECT s FROM Service s WHERE s.name like :name",
-                Service.class).setParameter("name", "%" + namePattern + "%").getResultList();
+                Service.class).setParameter("name", "%" + namePattern + "%").getSingleResult();
     }
 
     @Override
@@ -51,6 +51,11 @@ public class ServiceDaoImpl implements ServiceDao {
             throw new IllegalArgumentException();
         }
         return em.createQuery("Select s From Service s Where price BETWEEN :left AND :right",Service.class).setParameter("left", leftLimit).setParameter("right", rightLimit).getResultList();
+    }
+
+    @Override
+    public Service update(Service service) {
+        return em.merge(service);
     }
 
 }
