@@ -1,8 +1,6 @@
-package cz.muni.fi.pa165.tireservice.dao;
+package cz.muni.fi.pa165.tireservice.sevice;
 
 import cz.muni.fi.pa165.tireservice.entity.Order;
-import cz.muni.fi.pa165.tireservice.entity.Service;
-import cz.muni.fi.pa165.tireservice.entity.Tire;
 import cz.muni.fi.pa165.tireservice.entity.User;
 import cz.muni.fi.pa165.tireservice.enums.CarType;
 import cz.muni.fi.pa165.tireservice.enums.OrderState;
@@ -14,14 +12,27 @@ import java.util.List;
  *
  * @author Samuel Baniar
  */
-public interface OrderDao {
-    public void create(Order o);
-    public Order findById(Long id);
+public interface OrderService {
+    
+    void createOrder(Order order);
+    
     public List<Order> findAll();
-    public void remove(Order o) throws IllegalArgumentException;
+    
     public List<Order> findByUser(User u);
+    
     public List<Order> findByState(OrderState state);
-    public List<Order> findByCarType(CarType ct);
+    
+    public Order findById(Long id);
+    
+    public List<Order> findByCarType(CarType carType);
+    
     public List<Order> getOrdersCreatedBetween(Date start,Date end);
-    public Order update(Order order);
+    
+    public void startProcessingOrder(Long id);
+    
+    public void finishOrder(Long id);
+    
+    public void cancelOrder(Long id);
+    
+    public BigDecimal getOrderTotalPrice(long orderId);
 }

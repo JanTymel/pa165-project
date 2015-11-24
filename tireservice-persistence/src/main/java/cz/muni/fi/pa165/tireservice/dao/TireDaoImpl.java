@@ -84,5 +84,9 @@ public class TireDaoImpl implements TireDao {
         }
         return em.createQuery("Select t From Tire t Where price BETWEEN :left AND :right",Tire.class).setParameter("left", leftLimit).setParameter("right", rightLimit).getResultList();
     }
-
+    
+    @Override
+    public Tire update(Tire tire){
+        return em.merge(tire);
+    }
 }

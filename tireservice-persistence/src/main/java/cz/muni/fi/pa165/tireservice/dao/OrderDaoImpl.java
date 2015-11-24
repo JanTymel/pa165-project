@@ -84,4 +84,9 @@ public class OrderDaoImpl implements OrderDao {
 		query.setParameter("endDate", end);
 		return query.getResultList();
     }
+    
+    @Override
+    public Order update(Order order){
+        return em.merge(order);   
+    }    
 }

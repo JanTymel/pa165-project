@@ -22,4 +22,5 @@ public interface TireDao {
     public List<Tire> findByTireVendor(TireVendor tv);
     public List<Tire> findBySpeedIndex(String si);
     public List<Tire> getTiresWithPriceBetween(BigDecimal leftLimit, BigDecimal rightLimit);
+    public Tire update(Tire tire);
 }
