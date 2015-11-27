@@ -8,12 +8,14 @@ import cz.muni.fi.pa165.tireservice.enums.CarType;
 import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Samuel Baniar
  */
-@org.springframework.stereotype.Service
+
+@Service
 public class TireServiceImpl implements TireService {
 
     @Autowired
@@ -79,8 +81,8 @@ public class TireServiceImpl implements TireService {
     }
 
     @Override
-    public void changePrice(Long id, BigDecimal newPrice) {
-        Tire tire = tireDao.findById(id);
+    public void changePrice(Tire tire, BigDecimal newPrice) {
+        //Tire tire = tireDao.findById(id);
         tire.setPrice(newPrice);
 
         tireDao.update(tire);

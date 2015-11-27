@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Jan Tymel
  */
+
 @org.springframework.stereotype.Service
 public class ServiceServiceImpl implements ServiceService {
     @Autowired

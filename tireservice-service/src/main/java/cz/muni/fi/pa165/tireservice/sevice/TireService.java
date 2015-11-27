@@ -41,5 +41,5 @@ public interface TireService {
     
     public List<Tire> getTiresWithPriceBetween(BigDecimal leftLimit, BigDecimal rightLimit);    
     
-    public void changePrice(Long id, BigDecimal newPrice);
+    public void changePrice(Tire tire, BigDecimal newPrice);
 }

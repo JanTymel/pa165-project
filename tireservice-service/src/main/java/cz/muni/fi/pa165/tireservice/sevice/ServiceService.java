@@ -12,6 +12,8 @@ import java.util.List;
  *
  * @author Jan Tymel
  */
+
+@org.springframework.stereotype.Service
 public interface ServiceService {
 
     /**
