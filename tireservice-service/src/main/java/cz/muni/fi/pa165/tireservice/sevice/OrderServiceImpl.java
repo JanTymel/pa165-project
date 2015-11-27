@@ -7,6 +7,7 @@ import cz.muni.fi.pa165.tireservice.entity.User;
 import cz.muni.fi.pa165.tireservice.enums.CarType;
 import cz.muni.fi.pa165.tireservice.enums.OrderState;
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderDao orderDao;
-        
+
     @Override
     public void createOrder(Order order) {
         orderDao.create(order);
@@ -62,7 +63,7 @@ public class OrderServiceImpl implements OrderService {
     public void startProcessingOrder(Order order) {
         //Order order = orderDao.findById(order);
         order.setState(OrderState.IN_PROGRESS);
-        
+
         orderDao.update(order);
     }
 
@@ -70,7 +71,7 @@ public class OrderServiceImpl implements OrderService {
     public void finishOrder(Order order) {
         //Order order = orderDao.findById(id);
         order.setState(OrderState.COMPLETED);
-        
+
         orderDao.update(order);
     }
 
@@ -78,16 +79,16 @@ public class OrderServiceImpl implements OrderService {
     public void cancelOrder(Order order) {
         //Order order = orderDao.findById(id);
         order.setState(OrderState.CANCELLED);
-        
+
         orderDao.update(order);
     }
 
     @Override
     public BigDecimal getOrderTotalPrice(long orderId) {
         Order order = orderDao.findById(orderId);
-        
+
         BigDecimal totPrice = BigDecimal.ZERO;
-        
+
         for (Tire tire : order.getTires()) {
             totPrice = totPrice.add(tire.getPrice());
             
@@ -95,9 +96,22 @@ public class OrderServiceImpl implements OrderService {
         
         for (cz.muni.fi.pa165.tireservice.entity.Service service : order.getServices()) {
             totPrice = totPrice.add(service.getPrice());
+            
         }
-        
+
         return totPrice;
     }
-    
+
+    @Override
+    public List<Order> getOrderLastWeek() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        Date today = calendar.getTime();
+        calendar.add(Calendar.DAY_OF_YEAR, -7);
+        Date lastWeek = calendar.getTime();
+
+        List<Order> orders = orderDao.getOrdersCreatedBetween(lastWeek, today);
+        return orders;
+    }
+
 }

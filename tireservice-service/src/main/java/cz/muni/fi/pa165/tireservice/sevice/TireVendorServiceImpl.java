@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
  *
  * @author Jan Tymel
  */
+
 @Service
 public class TireVendorServiceImpl implements TireVendorService {
     @Autowired

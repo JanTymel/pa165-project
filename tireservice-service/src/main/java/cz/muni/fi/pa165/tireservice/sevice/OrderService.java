@@ -16,19 +16,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface OrderService {
-    
+
     void createOrder(Order order);
-    
+
     public List<Order> findAll();
-    
+
     public List<Order> findByUser(User u);
-    
+
     public List<Order> findByState(OrderState state);
-    
+
     public Order findById(Long id);
-    
+
     public List<Order> findByCarType(CarType carType);
-    
+
     public List<Order> getOrdersCreatedBetween(Date start,Date end);
     
     public void startProcessingOrder(Order order);
@@ -38,4 +38,6 @@ public interface OrderService {
     public void cancelOrder(Order order);
     
     public BigDecimal getOrderTotalPrice(long orderId);
+
+    public List<Order> getOrderLastWeek();
 }

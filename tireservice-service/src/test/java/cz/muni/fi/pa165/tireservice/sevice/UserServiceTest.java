@@ -116,7 +116,7 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
     public void testFindByAddress() {
         String str = testUser.getAddress();
         when(userDao.findByAddress(str)).thenReturn(Arrays.asList(testUser));
-        List<User> l = userService.findByName(str);
+        List<User> l = userService.findByAddress(str);
         assertEquals(l.size(), 1);
         assertDeepEquals(l.get(0), testUser);            
     } 

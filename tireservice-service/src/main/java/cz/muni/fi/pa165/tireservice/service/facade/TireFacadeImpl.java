@@ -11,28 +11,31 @@ import cz.muni.fi.pa165.tireservice.sevice.TireService;
 import cz.muni.fi.pa165.tireservice.sevice.TireVendorService;
 import java.math.BigDecimal;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
  * @author Samuel Baniar
  */
+@org.springframework.stereotype.Service
+@Transactional
 public class TireFacadeImpl implements TireFacade{
 
     @Autowired
     private TireService tireService;
-    
+
     @Autowired TireVendorService tireVendorService;
 
     @Autowired
     private BeanMappingService beanMappingService;
-    
+
     @Override
     public Long createTire(TireDto t) {
         Tire mappedTire = beanMappingService.mapTo(t, Tire.class);
-        
+
         mappedTire.setTireVendor(tireVendorService.findById(t.getTireVendor().getId()));
-        
+
         tireService.createTire(mappedTire);
         return mappedTire.getId();
     }
