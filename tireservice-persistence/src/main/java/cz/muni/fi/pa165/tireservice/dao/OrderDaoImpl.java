@@ -40,7 +40,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public List<Order> findAll() {
-        return em.createQuery("Select o From SERVICE_ORDER o",Order.class).getResultList();
+        return em.createQuery("Select o from Order o", Order.class).getResultList();
     }
 
     @Override
@@ -51,7 +51,7 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public List<Order> findByUser(User u) {
         TypedQuery<Order> query = em.createQuery(
-				"Select o from SERVICE_ORDER o where o.user = :userid",
+				"Select o from Order o where o.customer = :userid",
 				Order.class);
 
 		query.setParameter("userid", u);
@@ -61,7 +61,7 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public List<Order> findByState(OrderState state) {
         TypedQuery<Order> query = em.createQuery(
-				"SELECT o FROM SERVICE_ORDER o WHERE o.state = :state", Order.class);
+				"SELECT o FROM Order o WHERE o.state = :state", Order.class);
 		query.setParameter("state", state);
 		return query.getResultList();
     }
@@ -69,7 +69,7 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public List<Order> findByCarType(CarType ct) {
         TypedQuery<Order> query = em.createQuery(
-				"SELECT o FROM SERVICE_ORDER o WHERE o.carType = :state", Order.class);
+				"SELECT o FROM Order o WHERE o.carType = :state", Order.class);
 		query.setParameter("state", ct);
 		return query.getResultList();
     }
@@ -78,15 +78,15 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> getOrdersCreatedBetween(Date start, Date end) {
         TypedQuery<Order> query = em
 				.createQuery(
-						"SELECT o FROM SERVICE_ORDER o WHERE o.created BETWEEN :startDate AND :endDate ",
+						"SELECT o FROM Order o WHERE o.created BETWEEN :startDate AND :endDate ",
 						Order.class);
 		query.setParameter("startDate", start);
 		query.setParameter("endDate", end);
 		return query.getResultList();
     }
-    
+
     @Override
     public Order update(Order order){
-        return em.merge(order);   
-    }    
+        return em.merge(order);
+    }
 }

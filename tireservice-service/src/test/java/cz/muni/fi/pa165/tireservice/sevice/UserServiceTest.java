@@ -87,7 +87,10 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
     @Test 
     public void testFindByName() {
         String str = testUser.getName();
-        findUserByString(str);            
+        when(userDao.findByName(str)).thenReturn(Arrays.asList(testUser));
+        List<User> l = userService.findByName(str);
+        assertEquals(l.size(), 1);
+        assertDeepEquals(l.get(0), testUser);           
     }
 
     @Test
@@ -105,13 +108,17 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
     @Test 
     public void testFindByPhone() {
         String str = testUser.getPhone();
-        findUserByString(str);            
+        when(userDao.findByPhone(str)).thenReturn(testUser);
+        assertDeepEquals(userService.findByPhone(str), testUser);           
     }
 
     @Test 
     public void testFindByAddress() {
         String str = testUser.getAddress();
-        findUserByString(str);            
+        when(userDao.findByAddress(str)).thenReturn(Arrays.asList(testUser));
+        List<User> l = userService.findByName(str);
+        assertEquals(l.size(), 1);
+        assertDeepEquals(l.get(0), testUser);            
     } 
     
     @Test 
@@ -138,13 +145,5 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
         assertEquals(u1.getAddress(), u2.getAddress());
         assertEquals(u1.getIsAdmin(), u2.getIsAdmin());
     }
-    
-    public void findUserByString(String str) {
-        when(userDao.findUsersByName(str)).thenReturn(Arrays.asList(testUser));
-        List<User> l = userService.findByName(str);
-        assertEquals(l.size(), 1);
-        assertDeepEquals(l.get(0), testUser);
-    }
-
 }
 

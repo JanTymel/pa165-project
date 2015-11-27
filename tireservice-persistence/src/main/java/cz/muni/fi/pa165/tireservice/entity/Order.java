@@ -26,7 +26,7 @@ import javax.validation.constraints.NotNull;
  * @author Jan Tymel
  */
 @Entity
-@Table(name = "SERVICE_ORDER")
+@Table(name = "PRODUCT_ORDER")
 public class Order {
 
     @Id
@@ -136,12 +136,6 @@ public class Order {
         }
         final Order other = (Order) obj;
         if (!Objects.equals(this.customer, other.getCustomer())) {
-            return false;
-        }
-        if (!Objects.equals(this.tires, other.getTires())) {
-            return false;
-        }
-        if (!Objects.equals(this.services, other.getServices())) {
             return false;
         }
         if (!Objects.equals(this.created, other.getCreated())) {

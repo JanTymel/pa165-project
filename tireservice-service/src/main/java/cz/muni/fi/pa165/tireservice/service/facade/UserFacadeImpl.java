@@ -7,12 +7,15 @@ import cz.muni.fi.pa165.tireservice.facade.UserFacade;
 import cz.muni.fi.pa165.tireservice.sevice.BeanMappingService;
 import cz.muni.fi.pa165.tireservice.sevice.UserService;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
  * @author Jan Tymel
  */
+@org.springframework.stereotype.Service
+@Transactional
 public class UserFacadeImpl implements UserFacade {
 
     @Autowired
@@ -23,7 +26,14 @@ public class UserFacadeImpl implements UserFacade {
 
     @Override
     public Long createUser(UserCreateDto userCreateDto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        User user = new User();
+        user.setAddress(userCreateDto.getAddress());
+        user.setIsAdmin(userCreateDto.getIsAdmin());
+        user.setName(userCreateDto.getName());
+        user.setPhone(userCreateDto.getPhone());
+
+        userService.create(user);
+        return user.getId();
     }
 
     @Override
