@@ -34,10 +34,10 @@ public class TireDaoTestCase extends AbstractTestNGSpringContextTests {
     @Inject
     private TireVendorDao tireVendorDao;
 
-    TireVendor vendor1;
-    TireVendor vendor2;
-    Tire tire1;
-    Tire tire2;
+    private static TireVendor vendor1;
+    private static TireVendor vendor2;
+    private static Tire tire1;
+    private static Tire tire2;
 
     @BeforeMethod
     public void setUp() {

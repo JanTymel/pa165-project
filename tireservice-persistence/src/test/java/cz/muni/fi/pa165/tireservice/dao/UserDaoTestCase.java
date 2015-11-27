@@ -143,7 +143,7 @@ public class UserDaoTestCase extends AbstractTestNGSpringContextTests {
         userDao.create(user2);
 
         List<User> found = userDao.findAllCustomers();
-
+        assertEquals(found.size(), 1);
         assertEquals(found.get(0), user1);
     }
 
@@ -153,7 +153,7 @@ public class UserDaoTestCase extends AbstractTestNGSpringContextTests {
         userDao.create(user2);
 
         List<User> found = userDao.findAllAdmins();
-
+        assertEquals(found.size(), 1);
         assertEquals(found.get(0), user2);
     }
 
