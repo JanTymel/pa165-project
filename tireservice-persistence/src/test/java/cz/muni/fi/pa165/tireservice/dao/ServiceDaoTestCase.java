@@ -5,9 +5,7 @@ import cz.muni.fi.pa165.tireservice.entity.Service;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.inject.Inject;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
-import javax.persistence.PersistenceUnit;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
 import org.springframework.test.context.ContextConfiguration;
@@ -29,9 +27,6 @@ import org.testng.annotations.Test;
 @Transactional
 public class ServiceDaoTestCase extends AbstractTestNGSpringContextTests {
 
-    @PersistenceUnit
-    private EntityManagerFactory emf;
-
     @Inject
     private ServiceDao serviceDao;
 
@@ -52,6 +47,12 @@ public class ServiceDaoTestCase extends AbstractTestNGSpringContextTests {
     @Test(expectedExceptions = ConstraintViolationException.class)
     public void testNullName() {
         service1.setName(null);
+        serviceDao.create(service1);
+    }
+
+    @Test(expectedExceptions = ConstraintViolationException.class)
+    public void testNullPrice() {
+        service1.setPrice(null);
         serviceDao.create(service1);
     }
 

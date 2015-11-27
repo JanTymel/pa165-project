@@ -4,9 +4,7 @@ import cz.muni.fi.pa165.PersistenceSampleApplicationContext;
 import cz.muni.fi.pa165.tireservice.entity.TireVendor;
 import java.util.List;
 import javax.inject.Inject;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
-import javax.persistence.PersistenceUnit;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
 import org.springframework.test.context.ContextConfiguration;
@@ -27,9 +25,6 @@ import org.testng.annotations.Test;
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class TireVendorDaoTestCase extends AbstractTestNGSpringContextTests {
-
-    @PersistenceUnit
-    private EntityManagerFactory emf;
 
     @Inject
     private TireVendorDao tireVendorDao;

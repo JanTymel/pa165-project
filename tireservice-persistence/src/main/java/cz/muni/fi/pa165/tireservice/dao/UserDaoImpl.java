@@ -29,7 +29,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> findUsersByName(String name) {
+    public List<User> findByName(String name) {
         return em.createQuery("Select u from User u Where name like :name", User.class).setParameter("name", "%" + name + "%").getResultList();
     }
 
@@ -61,12 +61,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> findAllAdmins() {
-        return em.createQuery("Select u from User u Where isAdmin = 1", User.class).getResultList(); // needs to be checked
+        return em.createQuery("Select u from User u Where isAdmin is true", User.class).getResultList();
     }
 
     @Override
     public List<User> findAllCustomers() {
-        return em.createQuery("Select u from User u Where isAdmin = 0", User.class).getResultList(); // needs to be checked
+        return em.createQuery("Select u from User u Where isAdmin is false", User.class).getResultList();
     }
 
 }

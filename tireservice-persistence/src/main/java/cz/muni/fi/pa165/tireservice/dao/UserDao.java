@@ -13,7 +13,7 @@ public interface UserDao {
 
     public User findById(Long id);
 
-    public List<User> findUsersByName(String name);
+    public List<User> findByName(String name);
 
     public List<User> findAll();
 
