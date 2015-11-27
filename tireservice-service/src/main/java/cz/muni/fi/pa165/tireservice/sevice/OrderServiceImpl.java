@@ -8,6 +8,7 @@ import cz.muni.fi.pa165.tireservice.entity.User;
 import cz.muni.fi.pa165.tireservice.enums.CarType;
 import cz.muni.fi.pa165.tireservice.enums.OrderState;
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +97,18 @@ public class OrderServiceImpl implements OrderService {
         }
 
         return totPrice;
+    }
+
+    @Override
+    public List<Order> getOrderLastWeek() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        Date today = calendar.getTime();
+        calendar.add(Calendar.DAY_OF_YEAR, -7);
+        Date lastWeek = calendar.getTime();
+
+        List<Order> orders = orderDao.getOrdersCreatedBetween(lastWeek, today);
+        return orders;
     }
 
 }
