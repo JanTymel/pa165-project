@@ -90,6 +90,6 @@ public class TireFacadeImpl implements TireFacade{
 
     @Override
     public void changePrice(Long id, BigDecimal newPrice) {
-        tireService.changePrice(id, newPrice);
+        tireService.changePrice(tireService.findById(id), newPrice);
     }    
 }

@@ -2,7 +2,6 @@ package cz.muni.fi.pa165.tireservice.sevice;
 
 import cz.muni.fi.pa165.tireservice.dao.OrderDao;
 import cz.muni.fi.pa165.tireservice.entity.Order;
-import cz.muni.fi.pa165.tireservice.entity.Service;
 import cz.muni.fi.pa165.tireservice.entity.Tire;
 import cz.muni.fi.pa165.tireservice.entity.User;
 import cz.muni.fi.pa165.tireservice.enums.CarType;
@@ -11,11 +10,14 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Samuel Baniar
  */
+
+@Service
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
@@ -57,24 +59,24 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void startProcessingOrder(Long id) {
-        Order order = orderDao.findById(id);
+    public void startProcessingOrder(Order order) {
+        //Order order = orderDao.findById(order);
         order.setState(OrderState.IN_PROGRESS);
         
         orderDao.update(order);
     }
 
     @Override
-    public void finishOrder(Long id) {
-        Order order = orderDao.findById(id);
+    public void finishOrder(Order order) {
+        //Order order = orderDao.findById(id);
         order.setState(OrderState.COMPLETED);
         
         orderDao.update(order);
     }
 
     @Override
-    public void cancelOrder(Long id) {
-        Order order = orderDao.findById(id);
+    public void cancelOrder(Order order) {
+        //Order order = orderDao.findById(id);
         order.setState(OrderState.CANCELLED);
         
         orderDao.update(order);
@@ -87,11 +89,12 @@ public class OrderServiceImpl implements OrderService {
         BigDecimal totPrice = BigDecimal.ZERO;
         
         for (Tire tire : order.getTires()) {
-            totPrice.add(tire.getPrice());
+            totPrice = totPrice.add(tire.getPrice());
+            
         }
         
-        for (Service service : order.getServices()) {
-            totPrice.add(service.getPrice());
+        for (cz.muni.fi.pa165.tireservice.entity.Service service : order.getServices()) {
+            totPrice = totPrice.add(service.getPrice());
         }
         
         return totPrice;

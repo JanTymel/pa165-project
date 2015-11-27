@@ -61,17 +61,17 @@ public class OrderFacadeImpl implements OrderFacade{
 
     @Override
     public void startProcessingOrder(Long id) {
-        orderService.startProcessingOrder(id);
+        orderService.startProcessingOrder(orderService.findById(id));
     }
 
     @Override
     public void finishOrder(Long id) {
-        orderService.finishOrder(id);
+        orderService.finishOrder(orderService.findById(id));
     }
 
     @Override
     public void cancelOrder(Long id) {
-        orderService.cancelOrder(id);
+        orderService.cancelOrder(orderService.findById(id));
     }
 
     @Override

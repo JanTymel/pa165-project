@@ -7,11 +7,14 @@ import cz.muni.fi.pa165.tireservice.enums.OrderState;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Samuel Baniar
  */
+
+@Service
 public interface OrderService {
     
     void createOrder(Order order);
@@ -28,11 +31,11 @@ public interface OrderService {
     
     public List<Order> getOrdersCreatedBetween(Date start,Date end);
     
-    public void startProcessingOrder(Long id);
+    public void startProcessingOrder(Order order);
     
-    public void finishOrder(Long id);
+    public void finishOrder(Order order);
     
-    public void cancelOrder(Long id);
+    public void cancelOrder(Order order);
     
     public BigDecimal getOrderTotalPrice(long orderId);
 }

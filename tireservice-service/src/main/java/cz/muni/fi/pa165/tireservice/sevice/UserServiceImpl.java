@@ -4,11 +4,14 @@ import cz.muni.fi.pa165.tireservice.dao.UserDao;
 import cz.muni.fi.pa165.tireservice.entity.User;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Jan Tymel
  */
+
+@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired

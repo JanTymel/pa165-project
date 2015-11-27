@@ -1,6 +1,8 @@
 package cz.muni.fi.pa165.tireservice.service.config;
 
 import cz.muni.fi.pa165.PersistenceSampleApplicationContext;
+import cz.muni.fi.pa165.tireservice.service.facade.OrderFacadeImpl;
+import cz.muni.fi.pa165.tireservice.sevice.OrderServiceImpl;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.dozer.loader.api.BeanMappingBuilder;
@@ -12,7 +14,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import(PersistenceSampleApplicationContext.class)
-//@ComponentScan(basePackageClasses={OrderServiceImpl.class, CategoryFacadeImpl.class})
+@ComponentScan(basePackageClasses={OrderServiceImpl.class, OrderFacadeImpl.class})
 public class ServiceConfiguration {
 
 

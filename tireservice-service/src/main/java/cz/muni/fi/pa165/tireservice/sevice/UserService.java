@@ -2,11 +2,14 @@ package cz.muni.fi.pa165.tireservice.sevice;
 
 import cz.muni.fi.pa165.tireservice.entity.User;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Jan Tymel
  */
+
+@Service
 public interface UserService {
 
     /**
