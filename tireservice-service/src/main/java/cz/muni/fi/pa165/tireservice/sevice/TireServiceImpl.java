@@ -13,14 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Samuel Baniar
  */
+@org.springframework.stereotype.Service
 public class TireServiceImpl implements TireService {
 
     @Autowired
     private TireDao tireDao;
-    
+
     @Autowired
     private TireVendorDao tireVendorDao;
-          
+
     @Override
     public void createTire(Tire tire) {
         //tireVendorDao.create(tire.getTireVendor());
@@ -75,13 +76,13 @@ public class TireServiceImpl implements TireService {
     @Override
     public List<Tire> getTiresWithPriceBetween(BigDecimal leftLimit, BigDecimal rightLimit) {
         return tireDao.getTiresWithPriceBetween(leftLimit, rightLimit);
-    }    
+    }
 
     @Override
     public void changePrice(Long id, BigDecimal newPrice) {
         Tire tire = tireDao.findById(id);
         tire.setPrice(newPrice);
-        
+
         tireDao.update(tire);
     }
 }

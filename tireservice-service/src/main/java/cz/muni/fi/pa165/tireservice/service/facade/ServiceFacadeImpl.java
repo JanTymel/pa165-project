@@ -8,6 +8,7 @@ import cz.muni.fi.pa165.tireservice.sevice.BeanMappingService;
 import cz.muni.fi.pa165.tireservice.sevice.ServiceService;
 import java.math.BigDecimal;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -15,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Jan Tymel
  */
+@org.springframework.stereotype.Service
+@Transactional
 public class ServiceFacadeImpl implements ServiceFacade {
 
     @Autowired

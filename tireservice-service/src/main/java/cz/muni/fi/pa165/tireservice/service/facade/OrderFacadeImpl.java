@@ -11,23 +11,26 @@ import cz.muni.fi.pa165.tireservice.sevice.UserService;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
  * @author Samuel Baniar
  */
+@org.springframework.stereotype.Service
+@Transactional
 public class OrderFacadeImpl implements OrderFacade{
 
     @Autowired
     private OrderService orderService;
-    
+
     @Autowired
     private UserService userService;
-    
+
     @Autowired
     private BeanMappingService beanMappingService;
-    
+
     @Override
     public List<OrderDto> getAllOrders() {
         return beanMappingService.mapTo(orderService.findAll(), OrderDto.class);
@@ -78,5 +81,5 @@ public class OrderFacadeImpl implements OrderFacade{
     public BigDecimal getOrderTotalPrice(long id) {
         return orderService.getOrderTotalPrice(id);
     }
-    
+
 }

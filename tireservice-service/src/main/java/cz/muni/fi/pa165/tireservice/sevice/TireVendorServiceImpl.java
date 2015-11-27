@@ -4,12 +4,14 @@ import cz.muni.fi.pa165.tireservice.dao.TireVendorDao;
 import cz.muni.fi.pa165.tireservice.entity.TireVendor;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Implementation of TireVendorService
  *
  * @author Jan Tymel
  */
+@org.springframework.stereotype.Service
 public class TireVendorServiceImpl implements TireVendorService {
     @Autowired
     private TireVendorDao tireVendorDao;

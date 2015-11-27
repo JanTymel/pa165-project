@@ -16,11 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Samuel Baniar
  */
+@org.springframework.stereotype.Service
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderDao orderDao;
-        
+
     @Override
     public void createOrder(Order order) {
         orderDao.create(order);
@@ -60,7 +61,7 @@ public class OrderServiceImpl implements OrderService {
     public void startProcessingOrder(Long id) {
         Order order = orderDao.findById(id);
         order.setState(OrderState.IN_PROGRESS);
-        
+
         orderDao.update(order);
     }
 
@@ -68,7 +69,7 @@ public class OrderServiceImpl implements OrderService {
     public void finishOrder(Long id) {
         Order order = orderDao.findById(id);
         order.setState(OrderState.COMPLETED);
-        
+
         orderDao.update(order);
     }
 
@@ -76,25 +77,25 @@ public class OrderServiceImpl implements OrderService {
     public void cancelOrder(Long id) {
         Order order = orderDao.findById(id);
         order.setState(OrderState.CANCELLED);
-        
+
         orderDao.update(order);
     }
 
     @Override
     public BigDecimal getOrderTotalPrice(long orderId) {
         Order order = orderDao.findById(orderId);
-        
+
         BigDecimal totPrice = BigDecimal.ZERO;
-        
+
         for (Tire tire : order.getTires()) {
             totPrice.add(tire.getPrice());
         }
-        
+
         for (Service service : order.getServices()) {
             totPrice.add(service.getPrice());
         }
-        
+
         return totPrice;
     }
-    
+
 }
