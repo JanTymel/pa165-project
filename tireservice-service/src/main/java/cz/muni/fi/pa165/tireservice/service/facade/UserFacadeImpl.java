@@ -23,7 +23,14 @@ public class UserFacadeImpl implements UserFacade {
 
     @Override
     public Long createUser(UserCreateDto userCreateDto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        User user = new User();
+        user.setAddress(userCreateDto.getAddress());
+        user.setIsAdmin(userCreateDto.getIsAdmin());
+        user.setName(userCreateDto.getName());
+        user.setPhone(userCreateDto.getPhone());
+
+        userService.create(user);
+        return user.getId();
     }
 
     @Override
