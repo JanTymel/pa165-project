@@ -19,8 +19,8 @@ public class TireVendorDaoImpl implements TireVendorDao {
     private EntityManager em;
 
     @Override
-    public void create(TireVendor tv) {
-        em.persist(tv);
+    public void create(TireVendor tireVendor) {
+        em.persist(tireVendor);
     }
 
     @Override
@@ -34,14 +34,14 @@ public class TireVendorDaoImpl implements TireVendorDao {
     }
 
     @Override
-    public void remove(TireVendor tv) throws IllegalArgumentException {
-        em.remove(findById(tv.getId()));
+    public void remove(TireVendor tireVendor) {
+        em.remove(findById(tireVendor.getId()));
     }
 
     @Override
-    public TireVendor findByName(String namePattern) {
+    public TireVendor findByName(String name) {
         return em.createQuery("SELECT t FROM TireVendor t WHERE t.name like :name",
-                TireVendor.class).setParameter("name", "%" + namePattern + "%").getSingleResult();
+                TireVendor.class).setParameter("name", "%" + name + "%").getSingleResult();
     }
 
     @Override

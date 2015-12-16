@@ -20,8 +20,8 @@ public class ServiceDaoImpl implements ServiceDao {
     private EntityManager em;
 
     @Override
-    public void create(Service s) {
-        em.persist(s);
+    public void create(Service service) {
+        em.persist(service);
     }
 
     @Override
@@ -35,14 +35,14 @@ public class ServiceDaoImpl implements ServiceDao {
     }
 
     @Override
-    public void remove(Service t) throws IllegalArgumentException {
-        em.remove(findById(t.getId()));
+    public void remove(Service service) throws IllegalArgumentException {
+        em.remove(findById(service.getId()));
     }
 
     @Override
-    public Service findByName(String namePattern) {
+    public Service findByName(String name) {
         return em.createQuery("SELECT s FROM Service s WHERE s.name like :name",
-                Service.class).setParameter("name", "%" + namePattern + "%").getSingleResult();
+                Service.class).setParameter("name", "%" + name + "%").getSingleResult();
     }
 
     @Override

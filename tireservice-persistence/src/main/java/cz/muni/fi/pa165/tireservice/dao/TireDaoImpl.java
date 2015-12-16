@@ -22,8 +22,8 @@ public class TireDaoImpl implements TireDao {
     private EntityManager em;
 
     @Override
-    public void create(Tire t) {
-        em.persist(t);
+    public void create(Tire tire) {
+        em.persist(tire);
     }
 
     @Override
@@ -37,44 +37,44 @@ public class TireDaoImpl implements TireDao {
     }
 
     @Override
-    public void remove(Tire t) throws IllegalArgumentException {
-        em.remove(findById(t.getId()));
+    public void remove(Tire tire) {
+        em.remove(findById(tire.getId()));
     }
 
     @Override
-    public List<Tire> findByName(String namePattern) {
+    public List<Tire> findByName(String name) {
         return em.createQuery("SELECT t FROM Tire t WHERE name like :name",
-                Tire.class).setParameter("name", "%" + namePattern + "%").getResultList();
+                Tire.class).setParameter("name", "%" + name + "%").getResultList();
     }
 
     @Override
-    public List<Tire> findByCarType(CarType ct) {
+    public List<Tire> findByCarType(CarType carType) {
         return em.createQuery("SELECT t FROM Tire t WHERE carType = :carType",
-                Tire.class).setParameter("carType", ct).getResultList();
+                Tire.class).setParameter("carType", carType).getResultList();
     }
 
     @Override
-    public List<Tire> findByDiameter(int d) {
+    public List<Tire> findByDiameter(int diameter) {
         return em.createQuery("SELECT t FROM Tire t WHERE diameter = :diameter",
-                Tire.class).setParameter("diameter", d).getResultList();
+                Tire.class).setParameter("diameter", diameter).getResultList();
     }
 
     @Override
-    public List<Tire> findByWidth(int w) {
+    public List<Tire> findByWidth(int width) {
         return em.createQuery("SELECT t FROM Tire t WHERE width = :width",
-                Tire.class).setParameter("width", w).getResultList();
+                Tire.class).setParameter("width", width).getResultList();
     }
 
     @Override
-    public List<Tire> findByTireVendor(TireVendor tv) {
+    public List<Tire> findByTireVendor(TireVendor tireVendor) {
         return em.createQuery("SELECT t FROM Tire t WHERE tireVendor = :vendor",
-                Tire.class).setParameter("vendor", tv).getResultList();
+                Tire.class).setParameter("vendor", tireVendor).getResultList();
     }
 
     @Override
-    public List<Tire> findBySpeedIndex(String si) {
+    public List<Tire> findBySpeedIndex(String speedIndex) {
         return em.createQuery("SELECT t FROM Tire t WHERE t.speedIndex like :index",
-                Tire.class).setParameter("index", "%" + si + "%").getResultList();
+                Tire.class).setParameter("index", "%" + speedIndex + "%").getResultList();
     }
 
     @Override

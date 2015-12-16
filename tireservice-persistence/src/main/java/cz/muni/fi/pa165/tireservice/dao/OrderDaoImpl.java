@@ -44,33 +44,33 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public void remove(Order o) throws IllegalArgumentException {
-        em.remove(findById(o.getId()));
+    public void remove(Order order) {
+        em.remove(findById(order.getId()));
     }
 
     @Override
-    public List<Order> findByUser(User u) {
+    public List<Order> findByUser(User user) {
         TypedQuery<Order> query = em.createQuery(
 				"Select o from Order o where o.customer = :userid",
 				Order.class);
 
-		query.setParameter("userid", u);
+		query.setParameter("userid", user);
 		return query.getResultList();
     }
 
     @Override
-    public List<Order> findByState(OrderState state) {
+    public List<Order> findByState(OrderState orderState) {
         TypedQuery<Order> query = em.createQuery(
 				"SELECT o FROM Order o WHERE o.state = :state", Order.class);
-		query.setParameter("state", state);
+		query.setParameter("state", orderState);
 		return query.getResultList();
     }
 
     @Override
-    public List<Order> findByCarType(CarType ct) {
+    public List<Order> findByCarType(CarType carType) {
         TypedQuery<Order> query = em.createQuery(
 				"SELECT o FROM Order o WHERE o.carType = :state", Order.class);
-		query.setParameter("state", ct);
+		query.setParameter("state", carType);
 		return query.getResultList();
     }
 

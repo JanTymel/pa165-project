@@ -13,10 +13,49 @@ import java.util.List;
  * @author Samuel Baniar
  */
 public interface TireVendorDao {
-    public void create(TireVendor tv);
+
+    /**
+     * Creates new tire vendor.
+     *
+     * @param tireVendor Tire vendor that should be created
+     */
+    public void create(TireVendor tireVendor);
+
+    /**
+     * Returns tire vendor with specified id.
+     *
+     * @param id Id of tire vendor
+     * @return Tire vendor with specified id
+     */
     public TireVendor findById(Long id);
+
+    /**
+     * Returns all tire vendors.
+     *
+     * @return All tire vendors
+     */
     public List<TireVendor> findAll();
-    public void remove(TireVendor tv) throws IllegalArgumentException;
-    public TireVendor findByName(String namePattern);
+
+    /**
+     * Removes specified tire vendor.
+     *
+     * @param tireVendor Tire vendor that should be removed
+     */
+    public void remove(TireVendor tireVendor);
+
+    /**
+     * Returns tire vendor with specified name.
+     *
+     * @param name Name of tire vendor
+     * @return Tire vendor with specified name
+     */
+    public TireVendor findByName(String name);
+
+    /**
+     * Updates specified tire vendor.
+     *
+     * @param tireVendor Tire vendor that should be updated
+     * @return Updated tire vendor
+     */
     public TireVendor update(TireVendor tireVendor);
 }
