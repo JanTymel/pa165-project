@@ -90,5 +90,6 @@
         <module>tireservice-persistence</module>
         <module>tireservice-api</module>
         <module>tireservice-service</module>
-    </modules>
+    <module>tireservice-spring-mvc</module>
+  </modules>
 </project>
