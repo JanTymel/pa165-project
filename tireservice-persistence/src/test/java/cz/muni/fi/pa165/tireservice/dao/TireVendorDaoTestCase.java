@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
+import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -47,7 +48,7 @@ public class TireVendorDaoTestCase extends AbstractTestNGSpringContextTests {
         tireVendorDao.create(vendor1);
     }
 
-    @Test(expectedExceptions = PersistenceException.class)
+    @Test(expectedExceptions = DataAccessException.class)
     public void testTwoVendorsWithSameName() {
         vendor1.setName("Barum");
         vendor2.setName("Barum");

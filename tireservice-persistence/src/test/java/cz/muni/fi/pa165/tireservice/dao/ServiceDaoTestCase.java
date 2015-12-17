@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
+import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -56,7 +57,7 @@ public class ServiceDaoTestCase extends AbstractTestNGSpringContextTests {
         serviceDao.create(service1);
     }
 
-    @Test(expectedExceptions = PersistenceException.class)
+    @Test(expectedExceptions = DataAccessException.class)
     public void testTwoServicesWithSameName() {
         service1.setName("Barum");
         service2.setName("Barum");
