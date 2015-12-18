@@ -4,10 +4,21 @@
 
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>login form</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%
+            if (request.getParameter("error") == null) {
+                out.println("Please enter your login.");
+            } else {
+                out.println("Invalid login attempt!");
+            }
+        %>
+        <br>
+        <form method="post" action="login">
+        Email:<input type="text" name="email" /><br/>
+        Password:<input type="password" name="pass" /><br/>
+        <input type="submit" value="login" />
+        </form>
     </body>
 </html>
