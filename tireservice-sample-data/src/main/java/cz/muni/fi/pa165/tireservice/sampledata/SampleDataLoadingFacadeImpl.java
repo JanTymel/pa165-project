@@ -52,7 +52,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 
         User pepa = user("Josef Novák", "Botanická 68a 60200 Brno", "776665443", false);
         User franta = user("František Nejezchleba", "Falešná 123 12200 Praha", "543234789", false);
-        User mirek = user("Miroslav Skočdopole", "Vymyšlená 77 80022 Ostrava", "543234729", false);
+        User mirek = user("Miroslav Skočdopole", "Vymyšlená 77 80022 Ostrava", "777888999", false);
         User admin = user("Admin Adminovič", "Božetěchova 2 60200 Brno", "722333444", true);
 
         Tire polarisBarum = tire("Polaris", 13, 130, new BigDecimal("880.00"), "70T", barum, CarType.PASSENGER);
