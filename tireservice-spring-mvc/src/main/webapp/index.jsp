@@ -16,7 +16,7 @@
         %>
         <br>
         <form method="post" action="login">
-        Email:<input type="text" name="email" /><br/>
+        Name:<input type="text" name="email" /><br/>
         Password:<input type="password" name="pass" /><br/>
         <input type="submit" value="login" />
         </form>
