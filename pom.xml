@@ -91,5 +91,6 @@
         <module>tireservice-api</module>
         <module>tireservice-service</module>
     <module>tireservice-spring-mvc</module>
-  </modules>
+        <module>tireservice-sample-data</module>
+    </modules>
 </project>
