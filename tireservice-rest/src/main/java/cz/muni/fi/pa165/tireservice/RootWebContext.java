@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-//import cz.muni.fi.pa165.tireservice.sampledata.SampleDataConfiguration;
+import cz.muni.fi.pa165.tireservice.sampledata.SampleDataConfiguration;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -23,7 +23,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @EnableWebMvc
 @Configuration
-//@Import({ServiceConfiguration.class})
+@Import({SampleDataConfiguration.class})
 @ComponentScan(basePackages = {"cz.muni.fi.pa165.tireservice.rest.controllers"})
 public class RootWebContext extends WebMvcConfigurerAdapter {
 
