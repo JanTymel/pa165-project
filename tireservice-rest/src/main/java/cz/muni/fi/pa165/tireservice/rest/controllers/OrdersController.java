@@ -85,7 +85,7 @@ public class OrdersController {
      * @returns OrderDto
      */
     @RequestMapping(value = "{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final OrderDto changeOrderState(@PathVariable("id") long id, @RequestParam("action") String action) throws Exception {
+    public final OrderDto changeOrderState(@PathVariable("id") long id, @RequestParam(value = "action") String action) throws Exception {
 
         if (action.equalsIgnoreCase("process")) {
             orderFacade.startProcessingOrder(id);
